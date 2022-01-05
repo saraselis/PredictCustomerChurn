@@ -68,7 +68,7 @@ def perform_eda(dataframe: 'pd.Dataframe') -> 'pd.Drataframe':
     # Total Transaction Distribution
     plt.figure(figsize=(20, 10))
     sns.histplot(eda_data['Total_Trans_Ct'], kde=True)
-    plt.savefig(fname='./images/eda/total_transaction_distribution.png')
+    plt.savefig(fname='./images/eda/total_trans_dist.png')
 
     # Heatmap
     plt.figure(figsize=(20, 10))

@@ -1,15 +1,42 @@
-2022-01-05 16:11:06,123 - root - INFO: Starting test pipeline
-2022-01-05 16:11:06,124 - root - INFO: Testing if csv is accessible.
-2022-01-05 16:11:06,153 - root - INFO: Successfully imported dataset.
-2022-01-05 16:11:06,154 - root - INFO: Testing the dataset shape.
-2022-01-05 16:11:06,154 - root - INFO: Rows:                      10127	Columns: 23
-2022-01-05 16:11:06,155 - root - INFO: Testing EDA
-2022-01-05 16:11:07,245 - root - INFO: Success importing.
-2022-01-05 16:11:07,246 - root - INFO: Assert if churn_distribution.png is created.
-2022-01-05 16:11:07,250 - root - INFO: File churn_distribution.png found.
-2022-01-05 16:11:07,251 - root - INFO: Assert if customer_age_distribution.png is created.
-2022-01-05 16:11:07,254 - root - INFO: File customer_age_distribution.png was found.
-2022-01-05 16:11:07,254 - root - INFO: Assert if marital_status_distribution.png is created.
-2022-01-05 16:11:07,256 - root - INFO: File marital_status_distribution.png was found.
-2022-01-05 16:11:07,257 - root - INFO: Assert if total_transaction_distribution.png is created.
-2022-01-05 16:11:07,260 - root - ERROR: File not found.
+2022-01-05 16:30:07,737 - root - INFO: Starting test pipeline
+2022-01-05 16:30:07,737 - root - INFO: Testing if csv is accessible.
+2022-01-05 16:30:07,768 - root - INFO: Successfully imported dataset.
+2022-01-05 16:30:07,768 - root - INFO: Testing the dataset shape.
+2022-01-05 16:30:07,768 - root - INFO: Rows:                      10127	Columns: 23
+2022-01-05 16:30:07,769 - root - INFO: Testing EDA
+2022-01-05 16:30:08,681 - root - INFO: Success importing.
+2022-01-05 16:30:08,682 - root - INFO: Assert if churn_distribution.png is created.
+2022-01-05 16:30:08,684 - root - INFO: File churn_distribution.png found.
+2022-01-05 16:30:08,685 - root - INFO: Assert if customer_age_distribution.png is created.
+2022-01-05 16:30:08,687 - root - INFO: File customer_age_distribution.png was found.
+2022-01-05 16:30:08,687 - root - INFO: Assert if marital_status_distribution.png is created.
+2022-01-05 16:30:08,689 - root - INFO: File marital_status_distribution.png was found.
+2022-01-05 16:30:08,689 - root - INFO: Assert if total_transaction_distribution.png is created.
+2022-01-05 16:30:08,691 - root - INFO: File total_transaction_distribution.png was found.
+2022-01-05 16:30:08,691 - root - INFO: Assert if heatmap.png is created.
+2022-01-05 16:30:08,692 - root - INFO: File heatmap.png was found.
+2022-01-05 16:30:08,693 - root - INFO: Loading dataframe.
+2022-01-05 16:30:08,722 - root - INFO: Creating Churn feature.
+2022-01-05 16:30:08,727 - root - INFO: Verify if data is the same.
+2022-01-05 16:30:08,729 - root - INFO: Testing encoder_helper.
+2022-01-05 16:30:09,035 - root - INFO: Verify if column names if the same.
+2022-01-05 16:30:09,036 - root - INFO: Testing encoder_helper.
+2022-01-05 16:30:09,337 - root - INFO: Verify if column names is different
+2022-01-05 16:30:09,338 - root - INFO: Testing encoder_helper.
+2022-01-05 16:30:09,339 - root - INFO: Loading data.
+2022-01-05 16:30:09,680 - root - INFO: Verify if churn column is present in dataframe.
+2022-01-05 16:30:09,680 - root - INFO: Churn column is present.
+2022-01-05 16:30:09,681 - root - INFO: Verify the size of X_test.
+2022-01-05 16:30:09,681 - root - INFO: DataFrame sizes are OK.
+2022-01-05 16:30:10,039 - root - INFO: Assert if logistic_model.pkl file is present.
+2022-01-05 16:30:44,188 - root - INFO: Model logistic_model.pkl was found.
+2022-01-05 16:30:44,188 - root - INFO: Assert if rfc_model.pkl file is present.
+2022-01-05 16:30:44,190 - root - INFO: Model rfc_model.pkl was found.
+2022-01-05 16:30:44,190 - root - INFO: Assert if roc_curve_result.png file is present.
+2022-01-05 16:30:44,192 - root - INFO: File roc_curve_result.png was found.
+2022-01-05 16:30:44,192 - root - INFO: Assert if rfc_results.png file is present.
+2022-01-05 16:30:44,194 - root - INFO: File rf_results.png was found.
+2022-01-05 16:30:44,195 - root - INFO: Assert if logistic_results.png file is present.
+2022-01-05 16:30:44,196 - root - INFO: File logistic_results.png was found.
+2022-01-05 16:30:44,197 - root - INFO: Assert if feature_importances.png file is present.
+2022-01-05 16:30:44,199 - root - INFO: File feature_importances.png was found.
