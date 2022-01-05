@@ -32,15 +32,16 @@ def test_import():
     try:
         dataframe = clib.import_data("data/BankChurners.csv")
         logging.info("Successfully imported dataset.")
-    except FileNotFoundError as error:    
+    except FileNotFoundError as error:
         logging.error("File not found.")
         raise error
 
     logging.info("Testing the dataset shape.")
     try:
-        assert dataframe.shape[0] > 0      
-        assert dataframe.shape[1] > 0     
-        logging.info(f'Rows: {dataframe.shape[0]}\tColumns: {dataframe.shape[1]}') 
+        assert dataframe.shape[0] > 0
+        assert dataframe.shape[1] > 0
+        logging.info(f'Rows: \
+                     {dataframe.shape[0]}\tColumns: {dataframe.shape[1]}')
     except AssertionError as error:
         logging.error("The dataset does not have the correct shape.")
         raise error
@@ -59,7 +60,7 @@ def test_eda():
         error: AssertionError
         error: AssertionError
         error: AssertionError
-    """    
+    """
 
     logging.info("Testing EDA")
     dataframe = clib.import_data("data/BankChurners.csv")
@@ -68,20 +69,21 @@ def test_eda():
         clib.perform_eda(dataframe=dataframe)
         logging.info("Success importing.")
     except KeyError as error:
-        logging.error(f'Column {err.args[0]} not found.')
+        logging.error(f'Column {error.args[0]} not found.')
         raise error
 
     logging.info("Assert if churn_distribution.png is created.")
     try:
         assert os.path.isfile("./images/eda/churn_distribution.png") is True
-        logging.info(f'File churn_distribution.png found.')
+        logging.info('File churn_distribution.png found.')
     except AssertionError as error:
         logging.error('File not found.')
         raise error
 
     logging.info("Assert if customer_age_distribution.png is created.")
     try:
-        assert os.path.isfile("./images/eda/customer_age_distribution.png") is True
+        assert os.path.isfile("./images/eda/customer_age_distribution.png") \
+            is True
         logging.info('File customer_age_distribution.png was found.')
     except AssertionError as error:
         logging.error('File not found.')
@@ -89,7 +91,8 @@ def test_eda():
 
     logging.info("Assert if marital_status_distribution.png is created.")
     try:
-        assert os.path.isfile("./images/eda/marital_status_distribution.png") is True
+        assert os.path.isfile("./images/eda/marital_status_distribution.png")\
+            is True
         logging.info('File marital_status_distribution.png was found.')
     except AssertionError as error:
         logging.error('File not found.')
@@ -97,7 +100,7 @@ def test_eda():
 
     logging.info("Assert if total_transaction_distribution.png is created.")
     try:
-        assert os.path.isfile("./images/eda/total_transaction_distribution.png") is True
+        assert os.path.isfile("./images/eda/total_trans_dist.png") is True
         logging.info('File total_transaction_distribution.png was found.')
     except AssertionError as error:
         logging.error('File not found.')
@@ -120,22 +123,24 @@ def test_encoder_helper():
         error: AssertionError
         error: AssertionError
         error: AssertionError
-    """    
+    """
     logging.info("Loading dataframe.")
     dataframe = clib.import_data("data/BankChurners.csv")
 
     logging.info("Creating Churn feature.")
-    dataframe['Churn'] = dataframe['Attrition_Flag'].\
-                                apply(lambda val: 0 if val=="Existing Customer" else 1)
+    dataframe['Churn'] = dataframe['Attrition_Flag'].apply(lambda
+                                                           val: 0 if val ==
+                                                           "Existing Customer"
+                                                           else 1)
 
     cat_columns = ['Gender', 'Education_Level', 'Marital_Status',
                    'Income_Category', 'Card_Category']
 
     try:
         encoded_df = clib.encoder_helper(
-                            dataframe=dataframe,
-                            category_lst=[],
-                            response=None)
+            dataframe=dataframe,
+            category_lst=[],
+            response=None)
 
         logging.info('Verify if data is the same.')
         assert encoded_df.equals(dataframe) is True
@@ -146,9 +151,9 @@ def test_encoder_helper():
 
     try:
         encoded_df = clib.encoder_helper(
-                            dataframe=dataframe,
-                            category_lst=cat_columns,
-                            response=None)
+            dataframe=dataframe,
+            category_lst=cat_columns,
+            response=None)
 
         logging.info("Verify if column names if the same.")
         assert encoded_df.columns.equals(dataframe.columns) is True
@@ -162,17 +167,18 @@ def test_encoder_helper():
 
     try:
         encoded_df = clib.encoder_helper(
-                            dataframe=dataframe,
-                            category_lst=cat_columns,
-                            response='Churn')
+            dataframe=dataframe,
+            category_lst=cat_columns,
+            response='Churn')
 
         logging.info("Verify if column names is different")
-        assert encoded_df.columns.equals(dataframe.columns) is False   
+        assert encoded_df.columns.equals(dataframe.columns) is False
 
         # data should be different
         assert encoded_df.equals(dataframe) is False
 
-        assert len(encoded_df.columns) == len(dataframe.columns) + len(cat_columns)    
+        assert len(encoded_df.columns) == (len(dataframe.columns)
+                                           + len(cat_columns))
         logging.info("Testing encoder_helper.")
     except AssertionError as error:
         logging.error("Testing encoder_helper.")
@@ -180,23 +186,23 @@ def test_encoder_helper():
 
 
 def test_perform_feature_engineering():
-    """Test perform_feature_engineering() function from the churn_library module
+    """Test perform_feature_engineering() functionfrom the churn_library module
 
     Raises:
         error: KeyError
         error: AssertionError
-    """    
+    """
 
     logging.info("Loading data.")
     dataframe = clib.import_data("data/BankChurners.csv")
 
     dataframe['Churn'] = dataframe['Attrition_Flag'].\
-        apply(lambda val: 0 if val=="Existing Customer" else 1)
+        apply(lambda val: 0 if val == "Existing Customer" else 1)
 
     try:
-        (_, X_test, _, _) = clib.perform_feature_engineering(      
-                                                    dataframe=dataframe,
-                                                    response='Churn')
+        (_, X_test, _, _) = clib.perform_feature_engineering(
+            dataframe=dataframe,
+            response='Churn')
 
         logging.info("Verify if churn column is present in dataframe.")
         assert 'Churn' in dataframe.columns
@@ -207,7 +213,7 @@ def test_perform_feature_engineering():
 
     try:
         logging.info('Verify the size of X_test.')
-        assert (X_test.shape[0] == ceil(dataframe.shape[0]*0.3)) is True
+        assert (X_test.shape[0] == ceil(dataframe.shape[0] * 0.3)) is True
         logging.info('DataFrame sizes are OK.')
     except AssertionError as error:
         logging.error('DataFrame sizes are not correct.')
@@ -224,17 +230,17 @@ def test_train_models():
         error: AssertionError
         error: AssertionError
         error: AssertionError
-    """    
+    """
 
     dataframe = clib.import_data("data/BankChurners.csv")
 
     dataframe['Churn'] = dataframe['Attrition_Flag'].\
-        apply(lambda val: 0 if val=="Existing Customer" else 1)
+        apply(lambda val: 0 if val == "Existing Customer" else 1)
 
-    # Feature engineering 
-    (X_train, X_test, y_train, y_test) = clib.perform_feature_engineering(  
-                                                    dataframe=dataframe,
-                                                    response='Churn')
+    # Feature engineering
+    (X_train, X_test, y_train, y_test) = clib.perform_feature_engineering(
+        dataframe=dataframe,
+        response='Churn')
 
     logging.info("Assert if logistic_model.pkl file is present.")
     try:
@@ -279,7 +285,8 @@ def test_train_models():
 
     logging.info("Assert if feature_importances.png file is present.")
     try:
-        assert os.path.isfile('./images/results/feature_importances.png') is True
+        assert os.path.isfile('./images/results/feature_importances.png')\
+            is True
         logging.info('File feature_importances.png was found.')
     except AssertionError as error:
         logging.error('Not such file found.')
